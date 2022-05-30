@@ -17,7 +17,7 @@ runs:
     - name: Maven settings
       uses: Actonomy/maven-settings-xml-action@v20
       with:
-        servers: '[{"id": "actonomy", "username": "${env.NEXUS_ACTO_USER}", "password": "${env.NEXUS_ACTO_PASS}", "configuration": {"httpConfiguration": {"all": {"usePreemptive": "true"}}}}]'
+        servers: '[{"id": "actonomy","username": "${env.NEXUS_ACTO_USER}","password": "${env.NEXUS_ACTO_PASS}","configuration": {"httpConfiguration": {"all": {"usePreemptive": "true"}}}},{"id": "github","username": "git","password": "${env.GITHUB_TOKEN}"}]'
         mirrors: '[{"id": "actonomy", "mirrorOf": "*", "url": "https://nexus.actonomy.be/content/groups/public/"}]'
         repositories: '[{"id": "central", "name": "Maven Central", "url": "http://central.invalid", "releases": {"enabled": "true"}, "snapshots": {"enabled": "true"}}]'
         plugin_repositories: '[{"id": "central", "name": "Maven Central", "url": "http://central.invalid", "releases": {"enabled": "true"}, "snapshots": {"enabled": "true"}}]'
