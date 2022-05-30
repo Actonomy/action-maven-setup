@@ -1,0 +1,23 @@
+name: 'Maven setup'
+description: 'Maven setup'
+inputs:
+  java-version: 
+    description: 'Java version'
+    required: true
+    default: '11'
+runs:
+  using: "composite"
+  steps:
+    - name: Setup java
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: ${{ inputs.java-version }}
+        cache: 'maven'
+    - name: Maven settings
+      uses: Actonomy/maven-settings-xml-action@v20
+      with:
+        servers: '[{"id": "actonomy", "username": "${env.NEXUS_ACTO_USER}", "password": "${env.NEXUS_ACTO_PASS}", "configuration": {"httpConfiguration": {"all": {"usePreemptive": "true"}}}}]'
+        mirrors: '[{"id": "actonomy", "mirrorOf": "*", "url": "https://nexus.actonomy.be/content/groups/public/"}]'
+        repositories: '[{"id": "central", "name": "Maven Central", "url": "http://central.invalid", "releases": {"enabled": "true"}, "snapshots": {"enabled": "true"}}]'
+        plugin_repositories: '[{"id": "central", "name": "Maven Central", "url": "http://central.invalid", "releases": {"enabled": "true"}, "snapshots": {"enabled": "true"}}]'
