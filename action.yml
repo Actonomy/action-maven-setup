@@ -9,6 +9,10 @@ inputs:
     description: 'Private ssh key'
     required: false
     default: ''
+  java-setup-cache:
+    description: 'Java setup cache'
+    required: false
+    default: 'maven'
 runs:
   using: "composite"
   steps:
@@ -34,7 +38,7 @@ runs:
       with:
         distribution: 'temurin'
         java-version: ${{ inputs.java-version }}
-        cache: 'maven'
+        cache: ${{ inputs.java-setup-cache }}
     - name: Maven settings
       uses: Actonomy/maven-settings-xml-action@v20
       with:
