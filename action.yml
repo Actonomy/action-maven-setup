@@ -32,7 +32,7 @@ runs:
       shell: bash
       # printf is builtin and won't show up in ps
       run: |
-        mkdir ~/.ssh/
+        mkdir -p ~/.ssh/
         printf %s "$SSH_KEY" | base64 -d > ~/.ssh/id_ed25519
         chmod 600 ~/.ssh/id_ed25519
       env:
