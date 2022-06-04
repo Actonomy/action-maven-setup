@@ -42,7 +42,7 @@ runs:
       with:
         distribution: ${{ inputs.java-distro }}
         java-version: ${{ inputs.java-version }}
-        cache: ${{ inputs.java-setup-cache }}
+#        cache: ${{ inputs.java-setup-cache }}
     - name: Maven settings
       uses: Actonomy/maven-settings-xml-action@v20
       with:
